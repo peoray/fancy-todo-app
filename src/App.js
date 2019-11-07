@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from './components/todo-list/todo-list.component';
+// import Date from './components/date/date.component';
 import './App.css';
 
 class App extends Component {
@@ -28,6 +29,7 @@ class App extends Component {
     return (
       <div>
         <h1>Daily To-Do list manager</h1>
+        {/* <Date /> */}
         <TodoList todos={todos} />
       </div>
     );

@@ -1,0 +1,14 @@
+.todo-wrapper {
+  width: 400px;
+  max-width: 100%;
+  min-height: 500px;
+  margin: 20px auto 50px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 40px 20px;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+  background-color: #f4f7fc;
+  overflow: hidden;
+  position: relative;
+}
