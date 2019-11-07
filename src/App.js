@@ -6,23 +6,29 @@ import './App.css';
 class App extends Component {
   state = {
     todos: [
-      {
-        id: 1,
-        title: 'Clean room',
-        done: false
-      },
-      {
-        id: 2,
-        title: 'Do laundry',
-        done: false
-      },
-      {
-        id: 3,
-        title: 'Walk dog',
-        done: false
-      }
-    ]
+      // {
+      //   id: 1,
+      //   title: 'Clean room',
+      //   done: false
+      // },
+      // {
+      //   id: 2,
+      //   title: 'Do laundry',
+      //   done: false
+      // },
+      // {
+      //   id: 3,
+      //   title: 'Walk dog',
+      //   done: false
+      // }
+    ],
+    todo: ''
   };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({todo: e.target.value})
+  }
 
   render() {
     const { todos } = this.state;
@@ -30,7 +36,7 @@ class App extends Component {
       <div>
         <h1>Daily To-Do list manager</h1>
         {/* <Date /> */}
-        <TodoList todos={todos} />
+        <TodoList todos={todos} handleChange={this.handleChange} />
       </div>
     );
   }

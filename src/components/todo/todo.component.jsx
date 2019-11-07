@@ -1,8 +1,7 @@
 import React from 'react';
 import './todo.styles.css';
 
-const Todo = props => {
-  const { todo } = props;
+const Todo = ({ todo }) => {
   return (
     <div className="todo-list">
       {/* <div v-if="pending.length > 0"> */}
