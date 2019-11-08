@@ -1,16 +1,22 @@
 import React from 'react';
+import classnames from 'classnames';
 
-const AddTodo = ({ handleChange }) => {
+const AddTodo = ({ handleChange, todo, addTodo }) => {
   return (
     <div>
-      <form>
+      <form onSubmit={addTodo}>
         <input
           type="text"
-          class="input-todo"
           placeholder="Take the garbage out"
           onChange={handleChange}
+          className={classnames('input-todo', { active: todo })}
         />
-        <div class="btn btn-add">+</div>
+        <div
+          className={classnames('btn btn-add', { active: todo })}
+          onClick={addTodo}
+        >
+          +
+        </div>
       </form>
     </div>
   );
