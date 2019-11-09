@@ -39,21 +39,21 @@ class App extends Component {
       title: todo,
       completed: false
     };
-    // this.setState({ todos: [...todos, newTodo] });
-    this.setState((prevState, prevProps) => {
-      return { todos: [...todos, newTodo] };
-    }, () => ({ prevState: '' }));
+    this.setState({ todos: [...todos, newTodo] });
+    // this.setState((prevState, prevProps) => {
+    //   return { todos: [...todos, newTodo] };
+    // }, () => ({ prevState: '' }));
     // this.setState({
     //   todo: ''
     // });
   };
 
   deleteTodo = id => {
+    console.log('dkdk ' + id);
     const { todos } = this.state;
-    this.setState({
-      // todos: [...this.state.todos.splice(this.state.todos.indexOf(item), 1)]
-      todos: [todos.filter(todo => todo.id !== id)]
-    });
+    this.setState(() => ({
+      todos: [...todos.filter((todo) => todo.id !== id)]
+    }));
   };
 
   render() {
