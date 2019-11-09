@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from '../todo/todo.component';
 import Today from '../date/date.component';
 import AddTodo from '../add-todo/add-todo.component';
+import Completed from '../completed-todos/completed-todos.component';
 
 import './todo-list.styles.css';
 
@@ -9,6 +10,7 @@ const TodoList = ({
   todos,
   handleChange,
   pending,
+  completed,
   todo,
   addTodo,
   deleteTodo
@@ -23,8 +25,8 @@ const TodoList = ({
           {pending.length > 1 ? <span>s</span> : ''}
         </p>
       ) : null}
-      {todos.length > 0 ? (
-        todos.map(todo => (
+      {pending.length > 0 ? (
+        pending.map(todo => (
           <Todo todo={todo} key={todo.id} deleteTodo={deleteTodo} />
         ))
       ) : (
@@ -33,6 +35,19 @@ const TodoList = ({
           Time to chill! You have no todos.
         </p>
       )}
+
+      {completed && completed.length > 0 ? (
+        <p className="status busy">
+          You have {completed.length} completed item
+          {completed.length > 1 ? <span>s</span> : ''}
+        </p>
+      ) : null}
+
+      {completed.length > 0
+        ? completed.map(todo => (
+            <Completed todo={todo} key={todo.id} deleteTodo={deleteTodo} />
+          ))
+        : null}
     </div>
   );
 };
