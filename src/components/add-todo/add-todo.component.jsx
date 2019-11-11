@@ -9,7 +9,7 @@ const AddTodo = ({ handleChange, todo, addTodo }) => {
           type="text"
           placeholder="Take the garbage out"
           onChange={handleChange}
-          className={classnames('input-todo', { active: todo })}
+          className="input-todo"
         />
         <div
           className={classnames('btn btn-add', { active: todo })}

@@ -5,23 +5,7 @@ import './App.css';
 
 class App extends Component {
   state = {
-    todos: [
-      // {
-      //   id: 1,
-      //   title: 'Clean room',
-      //   completed: false
-      // },
-      // {
-      //   id: 2,
-      //   title: 'Do laundry',
-      //   completed: true
-      // },
-      // {
-      //   id: 3,
-      //   title: 'Walk dog',
-      //   completed: false
-      // }
-    ],
+    todos: [],
     todo: ''
   };
 
@@ -33,18 +17,24 @@ class App extends Component {
   addTodo = e => {
     e.preventDefault();
     const { todos, todo } = this.state;
-    const newTodo = {
-      id: uuid(),
-      title: todo,
-      completed: false
-    };
-    this.setState({ todos: [...todos, newTodo] });
-    // this.setState((prevState, prevProps) => {
-    //   return { todos: [...todos, newTodo] };
-    // }, () => ({ prevState: '' }));
-    // this.setState({
-    //   todo: ''
-    // });
+    // validation: check is input field is empty or not 
+    if (todo) {
+      const newTodo = {
+        id: uuid(),
+        title: todo,
+        completed: false
+      };
+
+      this.setState({ todos: [...todos, newTodo] });
+      // this.setState((prevState, prevProps) => {
+      //   return { todos: [...todos, newTodo] };
+      // }, () => ({ prevState: '' }));
+      // this.setState({
+      //   todo: ''
+      // });
+    } else {
+      return false
+    }
   };
 
   deleteTodo = id => {
@@ -53,6 +43,10 @@ class App extends Component {
       todos: [...todos.filter(todo => todo.id !== id)]
     }));
   };
+
+  clearAll = () => {
+    this.setState({todos: []})
+  }
 
   componentDidMount() {
     try {
@@ -93,6 +87,7 @@ class App extends Component {
           todo={todo}
           addTodo={this.addTodo}
           deleteTodo={this.deleteTodo}
+          clearAll={this.clearAll}
         />
       </div>
     );

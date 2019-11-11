@@ -13,7 +13,8 @@ const TodoList = ({
   completed,
   todo,
   addTodo,
-  deleteTodo
+  deleteTodo,
+  clearAll
 }) => {
   return (
     <div className="todo-wrapper">
@@ -48,6 +49,18 @@ const TodoList = ({
             <Completed todo={todo} key={todo.id} deleteTodo={deleteTodo} />
           ))
         : null}
+
+      <div className="control-buttons">
+        {/* {completed.length > 0 ?  <div className="btn btn-secondary" onClick={toggleShowComplete} {!showComplete ? <span>Show</span> : <span>Hide</span>} Complete</div>}  */}
+
+        {todos.length > 0 ? (
+          <div className="btn btn-secondary" onClick={clearAll}>
+            Clear All
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 };
