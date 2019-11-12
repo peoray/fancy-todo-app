@@ -5,6 +5,7 @@ import AddTodo from '../add-todo/add-todo.component';
 import Completed from '../completed-todos/completed-todos.component';
 
 import './todo-list.styles.css';
+import CustomButton from '../custom-button/custom-button.component';
 
 const TodoList = ({
   todos,
@@ -16,6 +17,8 @@ const TodoList = ({
   deleteTodo,
   clearAll
 }) => {
+  console.log(pending.length);
+  console.log(completed.length);
   return (
     <div className="todo-wrapper">
       <Today />
@@ -27,9 +30,13 @@ const TodoList = ({
         </p>
       ) : null}
       {pending.length > 0 ? (
-        pending.map(todo => (
-          <Todo todo={todo} key={todo.id} deleteTodo={deleteTodo} />
-        ))
+        <ul className="todo-list">
+          {pending.map(todo => (
+            <li>
+              <Todo todo={todo} key={todo.id} deleteTodo={deleteTodo} />
+            </li>
+          ))}
+        </ul>
       ) : (
         <p className="status free">
           <img src="images/beer_celebration.svg" alt="celebration" />
@@ -50,17 +57,11 @@ const TodoList = ({
           ))
         : null}
 
-      <div className="control-buttons">
-        {/* {completed.length > 0 ?  <div className="btn btn-secondary" onClick={toggleShowComplete} {!showComplete ? <span>Show</span> : <span>Hide</span>} Complete</div>}  */}
-
-        {todos.length > 0 ? (
-          <div className="btn btn-secondary" onClick={clearAll}>
-            Clear All
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
+      {todos.length > 0 ? (
+        <CustomButton onClick={clearAll}>Clear All</CustomButton>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

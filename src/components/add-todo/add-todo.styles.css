@@ -1,0 +1,60 @@
+input[type='text'] {
+  border: 1px solid #ddd;
+  min-width: 80%;
+  transition: all ease-in 0.25s;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #a3b1ff;
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  font-style: italic;
+}
+
+/* disable ios zoom on focus */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select:focus,
+  textarea:focus,
+  input:focus {
+    font-size: 16px !important;
+  }
+}
+
+.btn-add {
+  background: #ddd;
+  color: #fefefe;
+  border-color: #ddd !important;
+  min-width: 17%;
+  pointer-events: none;
+  transition: all ease-in 0.25s;
+  font-size: 2.2em !important;
+  line-height: 0.5em !important;
+  padding: 0.3em 0.3em !important;
+  float: right;
+}
+
+.btn-add.active {
+  background: #6664ff;
+  border-color: #6664ff;
+  pointer-events: visible;
+}
+
+.btn-add.active:hover {
+  background: #4442f6;
+  border-color: #4442f6;
+}
+
+.btn-add:active {
+  transform: scale(0.95);
+}

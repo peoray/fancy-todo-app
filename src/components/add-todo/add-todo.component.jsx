@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import './add-todo.styles.css';
 
 const AddTodo = ({ handleChange, todo, addTodo }) => {
   return (
@@ -9,7 +10,6 @@ const AddTodo = ({ handleChange, todo, addTodo }) => {
           type="text"
           placeholder="Take the garbage out"
           onChange={handleChange}
-          className="input-todo"
         />
         <div
           className={classnames('btn btn-add', { active: todo })}

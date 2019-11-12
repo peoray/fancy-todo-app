@@ -12,3 +12,22 @@
   overflow: hidden;
   position: relative;
 }
+
+.btn,
+input {
+  line-height: 2em;
+  border-radius: 3px;
+  border: 0;
+  display: inline-block;
+  margin: 15px 0;
+  padding: 0.2em 1em;
+  font-size: 1em;
+}
+
+.btn {
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+}
