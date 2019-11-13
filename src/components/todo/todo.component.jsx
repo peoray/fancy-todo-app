@@ -1,14 +1,14 @@
-import React from 'react';
-import './todo.styles.css';
+import React from "react";
+import "../todo/todo.styles.css";
 
-const Todo = ({ todo, deleteTodo }) => {
+const Todo = ({ todo, index, deleteTodo, toggleTodoCompleted }) => {
   return (
     <div>
       <input
         className="todo-checkbox"
         type="checkbox"
         id={`item_${todo.id}`}
-        onChange={() => (todo.completed = !todo.completd)}
+        onChange={() => toggleTodoCompleted(index)}
       />
       <label htmlFor={`item_${todo.id}`}></label>
       <span className="todo-text">{todo.title}</span>

@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import TodoList from './components/todo-list/todo-list.component';
-import uuid from 'uuid';
-import './App.css';
+import React, { Component } from "react";
+import TodoList from "./components/todo-list/todo-list.component";
+import uuid from "uuid";
+import "./App.css";
 
 class App extends Component {
   state = {
     todos: [],
-    todo: ''
+    todo: ""
   };
 
   handleChange = e => {
@@ -25,9 +25,12 @@ class App extends Component {
         completed: false
       };
       // this.setState({ todos: [...todos, newTodo] });
-      this.setState((prevState, prevProps) => {
-        return { todos: [...todos, newTodo] };
-      }, () => ({ prevState: '' }));
+      this.setState(
+        (prevState, prevProps) => {
+          return { todos: [...todos, newTodo] };
+        },
+        () => ({ prevState: "" })
+      );
       // this.setState({
       //   todo: ''
       // });
@@ -35,7 +38,6 @@ class App extends Component {
     } else {
       return false;
     }
-
   };
 
   deleteTodo = id => {
@@ -49,9 +51,21 @@ class App extends Component {
     this.setState({ todos: [] });
   };
 
+  toggleTodoCompleted = index => {
+    this.setState(({ todos }) => {
+      const newTodos = todos.map((todo, i) =>
+        i === index ? { ...todo, completed: !todo.completed } : todo
+      );
+      // newTodos[index].completed = !todos[index].completed;
+      return {
+        todos: newTodos
+      };
+    });
+  };
+
   componentDidMount() {
     try {
-      const json = localStorage.getItem('todos');
+      const json = localStorage.getItem("todos");
       const todos = JSON.parse(json);
       if (todos) {
         this.setState({ todos });
@@ -66,7 +80,7 @@ class App extends Component {
 
     if (prevState.todos.length !== todos.length) {
       const json = JSON.stringify(todos);
-      localStorage.setItem('todos', json);
+      localStorage.setItem("todos", json);
     }
   }
 
@@ -89,6 +103,7 @@ class App extends Component {
           addTodo={this.addTodo}
           deleteTodo={this.deleteTodo}
           clearAll={this.clearAll}
+          toggleTodoCompleted={this.toggleTodoCompleted}
         />
       </div>
     );
