@@ -17,24 +17,19 @@ class App extends Component {
   addTodo = e => {
     e.preventDefault();
     const { todos, todo } = this.state;
-    // validation: check is input field is empty or not
+    // validation: check if input field is empty or not
     if (todo) {
       const newTodo = {
         id: uuid(),
         title: todo,
         completed: false
       };
-      // this.setState({ todos: [...todos, newTodo] });
       this.setState(
         (prevState, prevProps) => {
-          return { todos: [...todos, newTodo] };
+          return { todos: [...todos, newTodo], todo: "" };
         },
-        () => ({ prevState: "" })
+        () => ({ todo: "" })
       );
-      // this.setState({
-      //   todo: ''
-      // });
-      // }
     } else {
       return false;
     }
