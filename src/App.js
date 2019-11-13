@@ -6,7 +6,9 @@ import "./App.css";
 class App extends Component {
   state = {
     todos: [],
-    todo: ""
+    completedTodos: [],
+    todo: "",
+    checked: false
   };
 
   handleChange = e => {
@@ -25,7 +27,7 @@ class App extends Component {
         completed: false
       };
       this.setState(
-        (prevState, prevProps) => {
+        () => {
           return { todos: [...todos, newTodo], todo: "" };
         },
         () => ({ todo: "" })
@@ -36,25 +38,33 @@ class App extends Component {
   };
 
   deleteTodo = id => {
-    const { todos } = this.state;
+    const { todos, completedTodos } = this.state;
     this.setState(() => ({
-      todos: [...todos.filter(todo => todo.id !== id)]
+      todos: [...todos.filter(todo => todo.id !== id)],
+      completedTodos: [...completedTodos.filter(todo => todo.id !== id)],
     }));
   };
 
   clearAll = () => {
-    this.setState({ todos: [] });
+    this.setState({ todos: [], completedTodos: [] });
   };
 
   toggleTodoCompleted = index => {
-    this.setState(({ todos }) => {
-      const newTodos = todos.map((todo, i) =>
-        i === index ? { ...todo, completed: !todo.completed } : todo
-      );
-      // newTodos[index].completed = !todos[index].completed;
+    this.setState(({ todos, completedTodos, checked }) => {
       return {
-        todos: newTodos
-      };
+        todos: todos.filter(todo => todo.id !== index),
+        completedTodos: completedTodos.concat(todos.filter(todo => todo.id === index)),
+        checked: !checked
+      }
+    });
+  };
+
+  toggleTodoUnCompleted = index => {
+    this.setState(({ todos, completedTodos }) => {
+     return {
+       todos: todos.concat(completedTodos.filter(todo => todo.id === index)),
+       completedTodos: completedTodos.filter(todo => todo.id !== index)
+     }
     });
   };
 
@@ -65,40 +75,47 @@ class App extends Component {
       if (todos) {
         this.setState({ todos });
       }
+
+      const json2 = localStorage.getItem("completedTodos");
+      const completedTodos = JSON.parse(json2);
+      if (completedTodos) {
+        this.setState({ completedTodos });
+      }
     } catch (error) {
       console.log(error);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { todos } = this.state;
+    const { todos, completedTodos } = this.state;
 
     if (prevState.todos.length !== todos.length) {
       const json = JSON.stringify(todos);
       localStorage.setItem("todos", json);
     }
+    if (prevState.completedTodos.length !== completedTodos.length) {
+      const json2 = JSON.stringify(completedTodos);
+      localStorage.setItem("completedTodos", json2);
+    }
   }
 
   render() {
-    const { todos, todo } = this.state;
-
-    const pending = todos.filter(todo => !todo.completed);
-
-    const completed = todos.filter(todo => todo.completed);
+    const { todos, todo, completedTodos, checked } = this.state;
 
     return (
       <div>
         <h1>Daily To-Do list manager</h1>
         <TodoList
           todos={todos}
+          completedTodos={completedTodos}
           handleChange={this.handleChange}
-          pending={pending}
-          completed={completed}
           todo={todo}
           addTodo={this.addTodo}
           deleteTodo={this.deleteTodo}
           clearAll={this.clearAll}
           toggleTodoCompleted={this.toggleTodoCompleted}
+          toggleTodoUnCompleted={this.toggleTodoUnCompleted}
+          checked={checked}
         />
       </div>
     );

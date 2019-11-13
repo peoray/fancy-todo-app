@@ -15,30 +15,33 @@ class TodoList extends Component {
   render() {
     const {
       todos,
+      completedTodos,
       handleChange,
-      pending,
-      completed,
+
       todo,
       addTodo,
       deleteTodo,
       toggleTodoCompleted,
+      toggleTodoUnCompleted,
+      checked,
       clearAll
     } = this.props;
+
     return (
       <div className="todo-wrapper">
         <Today />
         <AddTodo handleChange={handleChange} todo={todo} addTodo={addTodo} />
 
-        {pending && pending.length > 0 ? (
+        {todos && todos.length > 0 ? (
           <p className="status busy">
-            You have {pending.length} pending item
-            {pending.length > 1 ? <span>s</span> : ""}
+            You have {todos.length} todos item
+            {todos.length > 1 ? <span>s</span> : ""}
           </p>
         ) : null}
 
-        {pending.length > 0 ? (
+        {todos.length > 0 ? (
           <ul className="todo-list">
-            {pending.map((todo, index) => (
+            {todos.map((todo, index) => (
               <li>
                 <Todo
                   todo={todo}
@@ -46,6 +49,7 @@ class TodoList extends Component {
                   key={todo.id}
                   deleteTodo={deleteTodo}
                   toggleTodoCompleted={toggleTodoCompleted}
+                  checked={checked}
                 />
               </li>
             ))}
@@ -57,23 +61,28 @@ class TodoList extends Component {
           </p>
         )}
 
-        {completed && completed.length > 0 && this.state.showCompleted ? (
+        {completedTodos &&
+        completedTodos.length > 0 &&
+        this.state.showCompleted ? (
           <p className="status busy">
-            You have {completed.length} completed item
-            {completed.length > 1 ? <span>s</span> : ""}
+            Completed todos:{" "}
+            {Math.floor((todos.length / completedTodos.length) * 100) + "%"}
+            {/* You have {completedTodos.length} completed item
+            {completedTodos.length > 1 ? <span>s</span> : ""} */}
           </p>
         ) : null}
 
-        {completed.length > 0 && this.state.showCompleted ? (
+        {completedTodos.length > 0 && this.state.showCompleted ? (
           <ul className="todo-list archived">
-            {completed.map((todo, index) => (
+            {completedTodos.map((todo, index) => (
               <li key={todo.id}>
                 <Completed
                   todo={todo}
                   key={todo.id}
                   deleteTodo={deleteTodo}
                   index={index}
-                  toggleTodoCompleted={toggleTodoCompleted}
+                  toggleTodoUnCompleted={toggleTodoUnCompleted}
+                  checked={checked}
                 />
               </li>
             ))}
@@ -81,7 +90,7 @@ class TodoList extends Component {
         ) : null}
 
         <div className="control-buttons">
-          {completed.length > 0 ? (
+          {completedTodos.length > 0 ? (
             <CustomButton
               onClick={() =>
                 this.setState(prevState => ({
@@ -89,11 +98,13 @@ class TodoList extends Component {
                 }))
               }
             >
-              Show Completed
+              {!this.state.showCompleted || completedTodos.length === 0
+                ? "Show Completed"
+                : "Hide Completed"}
             </CustomButton>
           ) : null}
 
-          {todos.length > 0 ? (
+          {todos.length > 0 || completedTodos.length > 0 ? (
             <CustomButton onClick={clearAll}>Clear All</CustomButton>
           ) : (
             ""
