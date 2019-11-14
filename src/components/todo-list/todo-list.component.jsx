@@ -17,13 +17,11 @@ class TodoList extends Component {
       todos,
       completedTodos,
       handleChange,
-
       todo,
       addTodo,
       deleteTodo,
       toggleTodoCompleted,
       toggleTodoUnCompleted,
-      checked,
       clearAll
     } = this.props;
 
@@ -42,14 +40,12 @@ class TodoList extends Component {
         {todos.length > 0 ? (
           <ul className="todo-list">
             {todos.map((todo, index) => (
-              <li>
+              <li key={todo.id}>
                 <Todo
                   todo={todo}
                   index={index}
-                  key={todo.id}
                   deleteTodo={deleteTodo}
                   toggleTodoCompleted={toggleTodoCompleted}
-                  checked={checked}
                 />
               </li>
             ))}
@@ -78,11 +74,9 @@ class TodoList extends Component {
               <li key={todo.id}>
                 <Completed
                   todo={todo}
-                  key={todo.id}
                   deleteTodo={deleteTodo}
                   index={index}
                   toggleTodoUnCompleted={toggleTodoUnCompleted}
-                  checked={checked}
                 />
               </li>
             ))}

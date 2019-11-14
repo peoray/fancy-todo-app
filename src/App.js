@@ -8,7 +8,6 @@ class App extends Component {
     todos: [],
     completedTodos: [],
     todo: "",
-    checked: false
   };
 
   handleChange = e => {
@@ -19,8 +18,14 @@ class App extends Component {
   addTodo = e => {
     e.preventDefault();
     const { todos, todo } = this.state;
+    const duplicateItem = todos.filter(todoItem => {
+      if (isNaN(todoItem)) {
+        return todoItem.title.toUpperCase() === todo.toUpperCase();
+      }
+      return todoItem === todo;
+    });
     // validation: check if input field is empty or not
-    if (todo) {
+    if (todo && duplicateItem.length === 0) {
       const newTodo = {
         id: uuid(),
         title: todo,
@@ -41,7 +46,7 @@ class App extends Component {
     const { todos, completedTodos } = this.state;
     this.setState(() => ({
       todos: [...todos.filter(todo => todo.id !== id)],
-      completedTodos: [...completedTodos.filter(todo => todo.id !== id)],
+      completedTodos: [...completedTodos.filter(todo => todo.id !== id)]
     }));
   };
 
@@ -50,21 +55,22 @@ class App extends Component {
   };
 
   toggleTodoCompleted = index => {
-    this.setState(({ todos, completedTodos, checked }) => {
+    this.setState(({ todos, completedTodos }) => {
       return {
         todos: todos.filter(todo => todo.id !== index),
-        completedTodos: completedTodos.concat(todos.filter(todo => todo.id === index)),
-        checked: !checked
-      }
+        completedTodos: completedTodos.concat(
+          todos.filter(todo => todo.id === index)
+        ),
+      };
     });
   };
 
   toggleTodoUnCompleted = index => {
     this.setState(({ todos, completedTodos }) => {
-     return {
-       todos: todos.concat(completedTodos.filter(todo => todo.id === index)),
-       completedTodos: completedTodos.filter(todo => todo.id !== index)
-     }
+      return {
+        todos: todos.concat(completedTodos.filter(todo => todo.id === index)),
+        completedTodos: completedTodos.filter(todo => todo.id !== index)
+      };
     });
   };
 
@@ -100,7 +106,7 @@ class App extends Component {
   }
 
   render() {
-    const { todos, todo, completedTodos, checked } = this.state;
+    const { todos, todo, completedTodos } = this.state;
 
     return (
       <div>
@@ -115,7 +121,6 @@ class App extends Component {
           clearAll={this.clearAll}
           toggleTodoCompleted={this.toggleTodoCompleted}
           toggleTodoUnCompleted={this.toggleTodoUnCompleted}
-          checked={checked}
         />
       </div>
     );
