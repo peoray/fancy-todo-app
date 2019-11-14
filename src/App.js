@@ -8,6 +8,7 @@ class App extends Component {
     todos: [],
     completedTodos: [],
     todo: "",
+    percentage: 0
   };
 
   handleChange = e => {
@@ -35,7 +36,10 @@ class App extends Component {
         () => {
           return { todos: [...todos, newTodo], todo: "" };
         },
-        () => ({ todo: "" })
+        () => {
+          const percentage = this.handlePercentage();
+          this.setState({ percentage });
+        }
       );
     } else {
       return false;
@@ -44,10 +48,16 @@ class App extends Component {
 
   deleteTodo = id => {
     const { todos, completedTodos } = this.state;
-    this.setState(() => ({
-      todos: [...todos.filter(todo => todo.id !== id)],
-      completedTodos: [...completedTodos.filter(todo => todo.id !== id)]
-    }));
+    this.setState(
+      () => ({
+        todos: [...todos.filter(todo => todo.id !== id)],
+        completedTodos: [...completedTodos.filter(todo => todo.id !== id)]
+      }),
+      () => {
+        const precentage = this.handlePercentage();
+        this.setState({ precentage });
+      }
+    );
   };
 
   clearAll = () => {
@@ -60,7 +70,7 @@ class App extends Component {
         todos: todos.filter(todo => todo.id !== index),
         completedTodos: completedTodos.concat(
           todos.filter(todo => todo.id === index)
-        ),
+        )
       };
     });
   };
@@ -72,6 +82,20 @@ class App extends Component {
         completedTodos: completedTodos.filter(todo => todo.id !== index)
       };
     });
+  };
+
+  handlePercentage = () => {
+    const { todos, completedTodos } = this.state;
+
+    const numberOfUnCompletedTodos = Number(todos.length);
+    const numberOfCompletedTodos = Number(completedTodos.length);
+
+    const totalNumberOfTodos = Number(
+      numberOfUnCompletedTodos + numberOfCompletedTodos
+    );
+    const precentageOfCompletedTodos =
+      (numberOfCompletedTodos * 100) / totalNumberOfTodos;
+    return precentageOfCompletedTodos;
   };
 
   componentDidMount() {
@@ -99,14 +123,17 @@ class App extends Component {
       const json = JSON.stringify(todos);
       localStorage.setItem("todos", json);
     }
+
     if (prevState.completedTodos.length !== completedTodos.length) {
       const json2 = JSON.stringify(completedTodos);
       localStorage.setItem("completedTodos", json2);
+      const percentage = this.handlePercentage();
+      this.setState({ percentage });
     }
   }
 
   render() {
-    const { todos, todo, completedTodos } = this.state;
+    const { todos, todo, completedTodos, percentage } = this.state;
 
     return (
       <div>
@@ -121,6 +148,7 @@ class App extends Component {
           clearAll={this.clearAll}
           toggleTodoCompleted={this.toggleTodoCompleted}
           toggleTodoUnCompleted={this.toggleTodoUnCompleted}
+          percentage={percentage}
         />
       </div>
     );

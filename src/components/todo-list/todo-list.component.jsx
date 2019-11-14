@@ -22,7 +22,8 @@ class TodoList extends Component {
       deleteTodo,
       toggleTodoCompleted,
       toggleTodoUnCompleted,
-      clearAll
+      clearAll,
+      percentage
     } = this.props;
 
     return (
@@ -32,7 +33,7 @@ class TodoList extends Component {
 
         {todos && todos.length > 0 ? (
           <p className="status busy">
-            You have {todos.length} todos item
+            You have {todos.length} pending todo item
             {todos.length > 1 ? <span>s</span> : ""}
           </p>
         ) : null}
@@ -61,10 +62,8 @@ class TodoList extends Component {
         completedTodos.length > 0 &&
         this.state.showCompleted ? (
           <p className="status busy">
-            Completed todos:{" "}
-            {Math.floor((todos.length / completedTodos.length) * 100) + "%"}
-            {/* You have {completedTodos.length} completed item
-            {completedTodos.length > 1 ? <span>s</span> : ""} */}
+            You have {Math.round(percentage)}% completed item
+            {completedTodos.length > 1 ? <span>s</span> : ""}
           </p>
         ) : null}
 

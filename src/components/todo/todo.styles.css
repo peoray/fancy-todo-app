@@ -53,7 +53,7 @@ ul.todo-list li .delete {
 
 ul.todo-list li .delete:after {
   position: absolute;
-  content: '';
+  content: "";
   width: 16px;
   height: 16px;
   top: 50%;
@@ -96,7 +96,7 @@ ul.todo-list li:hover .delete:after {
 
 .todo-checkbox:checked + label:after {
   position: absolute;
-  content: '';
+  content: "";
   top: 30%;
   left: 50%;
   height: 3px;
@@ -126,28 +126,4 @@ ul.todo-list li:hover .delete:after {
   width: 50px;
   margin: 10px auto;
   vertical-align: middle;
-}
-
-.todo-item-enter-active,
-.todo-item-leave-active {
-  transition: opacity ease 0.25s, transform ease-in-out 0.3s;
-  transform-origin: left center;
-}
-
-/* .todo-item-leave-active below version 2.1.8 */
-.todo-item-enter,
-.todo-item-leave-to {
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
-}
-/* .slide-fade-leave-active below version 2.1.8 */
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: scale(1.1);
-  opacity: 0;
 }
