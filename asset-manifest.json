@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.61da7730.chunk.css",
-    "main.js": "/static/js/main.94f29ccb.chunk.js",
-    "main.js.map": "/static/js/main.94f29ccb.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3f1d1d89.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3f1d1d89.js.map",
-    "static/js/2.9b777baa.chunk.js": "/static/js/2.9b777baa.chunk.js",
-    "static/js/2.9b777baa.chunk.js.map": "/static/js/2.9b777baa.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.6b0131bcc16b50b5745819cd16f80e14.js": "/precache-manifest.6b0131bcc16b50b5745819cd16f80e14.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.61da7730.chunk.css.map": "/static/css/main.61da7730.chunk.css.map"
+    "main.css": "/fancy-todo-app/static/css/main.61da7730.chunk.css",
+    "main.js": "/fancy-todo-app/static/js/main.200d3c45.chunk.js",
+    "main.js.map": "/fancy-todo-app/static/js/main.200d3c45.chunk.js.map",
+    "runtime-main.js": "/fancy-todo-app/static/js/runtime-main.cc1203be.js",
+    "runtime-main.js.map": "/fancy-todo-app/static/js/runtime-main.cc1203be.js.map",
+    "static/js/2.9b777baa.chunk.js": "/fancy-todo-app/static/js/2.9b777baa.chunk.js",
+    "static/js/2.9b777baa.chunk.js.map": "/fancy-todo-app/static/js/2.9b777baa.chunk.js.map",
+    "index.html": "/fancy-todo-app/index.html",
+    "precache-manifest.8da3ec8518c1df2493b7113a9a900d6c.js": "/fancy-todo-app/precache-manifest.8da3ec8518c1df2493b7113a9a900d6c.js",
+    "service-worker.js": "/fancy-todo-app/service-worker.js",
+    "static/css/main.61da7730.chunk.css.map": "/fancy-todo-app/static/css/main.61da7730.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.3f1d1d89.js",
+    "static/js/runtime-main.cc1203be.js",
     "static/js/2.9b777baa.chunk.js",
     "static/css/main.61da7730.chunk.css",
-    "static/js/main.94f29ccb.chunk.js"
+    "static/js/main.200d3c45.chunk.js"
   ]
 }
