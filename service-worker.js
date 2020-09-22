@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fancy-todo-app/precache-manifest.8da3ec8518c1df2493b7113a9a900d6c.js"
+  "/fancy-todo-app/precache-manifest.1426b775f1869ccf9a9ae3b591392a54.js"
 );
 
 self.addEventListener('message', (event) => {
