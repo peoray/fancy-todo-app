@@ -58,7 +58,7 @@ ul.todo-list li .delete:after {
   height: 16px;
   top: 50%;
   left: 50%;
-  background-image: url(/images/trash.svg);
+  background-image: url(../../assets/images/trash.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

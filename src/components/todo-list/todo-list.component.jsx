@@ -3,6 +3,7 @@ import Todo from "../todo/todo.component";
 import Today from "../date/date.component";
 import AddTodo from "../add-todo/add-todo.component";
 import Completed from "../completed-todos/completed-todos.component";
+import Img from "../../assets/images/beer_celebration.svg"
 
 import "./todo-list.styles.css";
 import CustomButton from "../custom-button/custom-button.component";
@@ -53,7 +54,7 @@ class TodoList extends Component {
           </ul>
         ) : (
           <p className="status free">
-            <img src="images/beer_celebration.svg" alt="celebration" />
+            <img src={Img} alt="celebration" />
             Time to chill! You have no todos.
           </p>
         )}
